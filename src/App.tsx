@@ -2,17 +2,15 @@ import React, { useState } from "react";
 import {
   DragDropContext,
   Droppable,
-  Draggable,
   OnDragEndResponder,
 } from "react-beautiful-dnd";
+import DraggablePlayerCard from "./components/DraggablePlayerCard/DraggablePlayerCard";
 
 import { data } from "./data/Players";
 import "./App.css";
 
-let data2 = data.map((player, index) => ({ ...player, id: index }));
-
 function App() {
-  const [players, setPlayers] = useState(data2);
+  const [players, setPlayers] = useState(data);
 
   const handleDragDrop: OnDragEndResponder = (results) => {
     const { source, destination, type } = results;
@@ -46,22 +44,11 @@ function App() {
             {(provided) => (
               <div {...provided.droppableProps} ref={provided.innerRef}>
                 {players.map((player, index) => (
-                  <Draggable
-                    draggableId={player.id.toString()}
-                    key={player.id}
+                  <DraggablePlayerCard
+                    player={player}
                     index={index}
-                  >
-                    {(provided) => (
-                      <div
-                        className='card'
-                        {...provided.dragHandleProps}
-                        {...provided.draggableProps}
-                        ref={provided.innerRef}
-                      >
-                        <h3>{player.Name}</h3>
-                      </div>
-                    )}
-                  </Draggable>
+                    key={player.id}
+                  />
                 ))}
                 {provided.placeholder}
               </div>
