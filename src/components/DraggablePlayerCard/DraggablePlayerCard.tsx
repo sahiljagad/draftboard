@@ -21,4 +21,3 @@ const DraggablePlayerCard = ({ player, index }: DraggablePlayerCardProps) => {
 };
 
 export default DraggablePlayerCard;
-// dummy
