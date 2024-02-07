@@ -4,7 +4,7 @@ import {
   Droppable,
   OnDragEndResponder,
 } from "react-beautiful-dnd";
-import DraggablePlayerCard from "./components/DraggablePlayerCard/DraggablePlayerCard";
+import PlayerList from "./components/PlayerList/PlayerList";
 
 import { data } from "./data/Players";
 import "./App.css";
@@ -40,20 +40,8 @@ function App() {
           <div className='header'>
             <h1>Player Ranking</h1>
           </div>
-          <Droppable droppableId='ROOT' type='group'>
-            {(provided) => (
-              <div {...provided.droppableProps} ref={provided.innerRef}>
-                {players.map((player, index) => (
-                  <DraggablePlayerCard
-                    player={player}
-                    index={index}
-                    key={player.id}
-                  />
-                ))}
-                {provided.placeholder}
-              </div>
-            )}
-          </Droppable>
+          < PlayerList players={players}/>
+         
         </DragDropContext>
       </div>
     </div>

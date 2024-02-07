@@ -14,6 +14,8 @@ const DraggablePlayerCard = ({ player, index }: DraggablePlayerCardProps) => {
         >
           <h4>{player.name}</h4>
           <p>ADP: {player.adpPPR}</p>
+          <p>Position: {player.position}</p>
+          <p>Team: {player.team}</p>
         </div>
       )}
     </Draggable>

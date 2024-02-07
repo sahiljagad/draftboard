@@ -3,7 +3,7 @@ export type DraggablePlayerCardProps = {
   index: number;
 };
 
-type Player = {
+export type Player = {
   id: number;
   name: string;
   team: string;
