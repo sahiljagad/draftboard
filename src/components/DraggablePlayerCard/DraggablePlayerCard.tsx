@@ -1,24 +1,14 @@
 import React from "react";
-import { Draggable } from "react-beautiful-dnd";
 import { DraggablePlayerCardProps } from "./types";
 
-const DraggablePlayerCard = ({ player, index }: DraggablePlayerCardProps) => {
+const DraggablePlayerCard = ({ player }: DraggablePlayerCardProps) => {
   return (
-    <Draggable draggableId={player.id.toString()} key={player.id} index={index}>
-      {(provided) => (
-        <div
-          className={`player-card ${player.position.toLocaleLowerCase()}`}
-          {...provided.dragHandleProps}
-          {...provided.draggableProps}
-          ref={provided.innerRef}
-        >
-          <h4>{player.name}</h4>
-          <p>ADP: {player.adpPPR}</p>
-          <p>Position: {player.position}</p>
-          <p>Team: {player.team}</p>
-        </div>
-      )}
-    </Draggable>
+    <div className={`player-card ${player.position.toLocaleLowerCase()}`}>
+      <h4>{player.name}</h4>
+      <p>ADP: {player.adpPPR}</p>
+      <p>Position: {player.position}</p>
+      <p>Team: {player.team}</p>
+    </div>
   );
 };
 

@@ -1,51 +1,46 @@
 import React, { useState } from "react";
 import {
-  DragDropContext,
-  Droppable,
-  OnDragEndResponder,
-} from "react-beautiful-dnd";
-import PlayerList from "./components/PlayerList/PlayerList";
+  GridContextProvider,
+  GridDropZone,
+  GridItem,
+  swap,
+} from "react-grid-dnd";
 
 import { data } from "./data/Players";
 import "./App.css";
+import { Player } from "./components/DraggablePlayerCard/types";
+import DraggablePlayerCard from "./components/DraggablePlayerCard/DraggablePlayerCard";
 
-function App() {
-  const [players, setPlayers] = useState(data);
+const App = () => {
+  const [players, setItems] = useState<Player[]>(data); // supply your own state
 
-  const handleDragDrop: OnDragEndResponder = (results) => {
-    const { source, destination, type } = results;
-
-    if (!destination) return;
-
-    if (
-      source.droppableId === destination.droppableId &&
-      source.index === destination.index
-    )
-      return;
-
-    if (type === "group") {
-      const reorderedPlayers = [...players];
-      const sourceIndex = source.index;
-      const destinationIndex = destination.index;
-      const [removedPlayer] = reorderedPlayers.splice(sourceIndex, 1);
-      reorderedPlayers.splice(destinationIndex, 0, removedPlayer);
-      return setPlayers(reorderedPlayers);
-    }
-  };
+  // target id will only be set if dragging from one dropzone to another.
+  function onChange(
+    sourceId: any,
+    sourceIndex: any,
+    targetIndex: any,
+    targetId: any
+  ) {
+    const nextState = swap(players, sourceIndex, targetIndex);
+    setItems(nextState);
+  }
 
   return (
-    <div className='layout__wrapper'>
-      <div className='card'>
-        <DragDropContext onDragEnd={handleDragDrop}>
-          <div className='header'>
-            <h1>Player Ranking</h1>
-          </div>
-          < PlayerList players={players}/>
-         
-        </DragDropContext>
-      </div>
-    </div>
+    <GridContextProvider onChange={onChange}>
+      <GridDropZone
+        id='player'
+        boxesPerRow={10}
+        rowHeight={100}
+        style={{ height: "400px" }}
+      >
+        {players.map((player) => (
+          <GridItem key={player.id}>
+            <DraggablePlayerCard player={player} />
+          </GridItem>
+        ))}
+      </GridDropZone>
+    </GridContextProvider>
   );
-}
+};
 
 export default App;

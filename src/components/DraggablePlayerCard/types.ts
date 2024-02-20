@@ -1,6 +1,5 @@
 export type DraggablePlayerCardProps = {
   player: Player;
-  index: number;
 };
 
 export type Player = {
