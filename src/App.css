@@ -21,3 +21,33 @@
 .dst {
   background-color: #e8dff5;
 }
+
+.title {
+  color: white;
+  text-align: center;
+  font-size: 30px;
+}
+
+.card {
+  box-shadow: 3px;
+  border: 1px solid #636363;
+  border-radius: 4px;
+  padding: 0.5rem;
+  margin: 2px 2px 2px 2px;
+}
+
+.list-container {
+  margin: 40px 40px 40px 40px;
+  padding: 10px 10px 10px 10px;
+  background-color: #3b3b3b;
+}
+
+html {
+  background-color: #222222;
+}
+
+.poppins-regular {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
