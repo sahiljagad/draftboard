@@ -36,6 +36,30 @@
   margin: 2px 2px 2px 2px;
 }
 
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  cursor: grab;
+}
+
+.player-filter {
+  background-color: #fff;
+  width: 50%;
+}
+
+.column-setter {
+  background-color: #fff;
+  width: 50%;
+}
+
+.tool-bar {
+  background-color: #636363;
+  margin: 40px 40px 40px 40px;
+  padding: 10px 10px 10px 10px;
+  border-radius: 3px;
+  display: flex;
+  gap: 20px;
+}
+
 .list-container {
   margin: 40px 40px 40px 40px;
   padding: 10px 10px 10px 10px;
